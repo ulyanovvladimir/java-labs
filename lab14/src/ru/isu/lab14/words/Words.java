@@ -161,18 +161,18 @@ public class Words {
     public static void main(String[] args) {
         //считываем словарь из текстового файла и получаем список всех слов, содержащихся в исходном словаре
         List<String> dictionary = readDictionary();
-        //TODO получаем список слов без дефисов
+        // получаем список слов без дефисов
         // Подсказка:воспользовавшись методом withoutDefis
-        List<String> dic = Collections.emptyList();
+        List<String> dic = withoutDefis(dictionary);
 
-        //TODO получаем компаратор для сравнения строк по длине
+        //получаем компаратор для сравнения строк по длине
         // Подсказка: воспользоваться функцией lengthComparator
-        Comparator<String> c = null;
+        Comparator<String> c = lengthComparator();
         dic.sort(c);
 
-        //TODO Фильтруем первые несколько слов максимальной длины,
+        //Фильтруем первые несколько слов максимальной длины,
         // Замечание: необходимо исопльовать константу TOP_SIZE. Обратите внимание на метод subList
-        List<String> top = null;
+        List<String> top = top(dic);
 
         //случайное слово из топа - оно будет словом из которого все будут собирать слова
         Random rand = new Random();
