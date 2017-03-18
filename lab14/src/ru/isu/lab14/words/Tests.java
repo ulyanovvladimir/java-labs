@@ -2,9 +2,7 @@ package ru.isu.lab14.words;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -68,9 +66,7 @@ public class Tests {
 
     @Test
     public void testCount(){
-        assertEquals(16,countUserWord(10, "собака"));
-        assertEquals(16,countCompWord(10, "собака"));
-        assertEquals(23,countUserWord(20, "дом"));
-        assertEquals(23,countCompWord(20, "дом"));
+        assertEquals(16, countWord(10, "собака"));
+        assertEquals(23, countWord(20, "дом"));
     }
 }
