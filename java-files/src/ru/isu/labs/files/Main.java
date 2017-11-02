@@ -11,22 +11,22 @@ public class Main {
 
     /**
      * Считывает файл в кодировке UTF-8 и выводит его на экран.
-     * @param path
+     * @param path путь до файла
      * @throws IOException в случае, если файл не найден, либо произошла проблема
      * при чтении файла.
      *
      */
-    public void printFileUTF(String path) throws IOException{
+    public static void printFileUTF(String path) throws IOException{
         //TODO
     }
 
     /**
      *
-     * @param path
-     * @param encoding
-     * @return
+     * @param path путь до файла
+     * @param encoding кодировка
+     * @return содержимое файла в виде строки
      */
-    public String readFile(String path, String encoding){
+    public static String readFile(String path, String encoding){
         //TODO
         return null;
     }
@@ -34,10 +34,10 @@ public class Main {
 
     /**
      * Проверяет, является ли строка словом. Строка не должна содержать пробелы, символ дефиса, точки и точки с запятой.
-     * @param s
+     * @param s строка
      * @return
      */
-    public boolean isWord(String s){
+    public static boolean isWord(String s){
         //TODO
         return true;
     }
@@ -48,7 +48,7 @@ public class Main {
      * @param begining начало слова
      * @return возвращает количество строк, удовлетворяющих условием поиска.
      */
-    public int wordsStartsWith(String path, String begining){
+    public static int wordsStartsWith(String begining){
         //TODO
         return 0;
     }
@@ -58,7 +58,7 @@ public class Main {
      * @param part часть слова
      * @return количество слов, удовлетворяющих критерию
      */
-    public int wordsContains(String  part){
+    public static int wordsContains(String  part){
         //TODO
         return 0;
     }
@@ -68,7 +68,7 @@ public class Main {
      * @param size
      * @return
      */
-    public int countWordBySize(int size){
+    public static int countWordBySize(int size){
         //TODO
         return 0;
     }
