@@ -1,12 +1,38 @@
 package ru.isu.labs.files;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-	    // write your code here
+        final int BUFFER_SIZE=5000;
+        BufferedReader reader = null;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(new File("c:\\windows\\win.ini"));
+            InputStreamReader streamReader = new InputStreamReader(fileInputStream, "windows-1251"); // UTF-8
+            reader = new BufferedReader(streamReader, BUFFER_SIZE);
+            while (true) {
+                //далее делаем что-то со строкой, например выводим на экран
+                String line = reader.readLine();
+                if (line == null) break;
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            // файл не найден
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            //Не верная кодировка, кодировка не найдена
+            throw new RuntimeException("Кодировка не найдена", e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

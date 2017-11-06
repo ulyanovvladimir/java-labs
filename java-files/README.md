@@ -5,8 +5,58 @@
 2. обработка исключений.
 
 На данном уровне знаний в области языков программирования я рекомендую пользоваться вам чтением файлов на основе потоков либо сканером. Пример:
+```java
+\\Самый простой пример на базе сканнера
+try {
+    Scanner scanner = new Scanner(new File("c:\\windows\\win.ini"), "UTF-8");
+    //Scanner scanner = new Scanner(new File("c:\\windows\\win.ini"), "windows-1251");
+    while (scanner.hasNext()) {
+        //считываем строку
+        String line = scanner.nextLine();
+        //далее делаем что-то со строкой, например выводим на экран
+        System.out.println(line);
+    }
+} catch (FileNotFoundException e) {
+    // файл не найден
+    e.printStackTrace();
+} catch (IllegalArgumentException e){
+    //Не верная кодировка, кодировка не найдена
+    throw new RuntimeException("Кодировка не найдена", e);
+}
+```
 
-```java        
+Пример посложнее на базе потоков и буферизированного чтения
+```java
+final int BUFFER_SIZE=5000;
+BufferedReader reader = null;
+try {
+    FileInputStream fileInputStream = new FileInputStream(new File("c:\\windows\\win.ini"));
+    InputStreamReader streamReader = new InputStreamReader(fileInputStream, "UTF-8");
+    reader = new BufferedReader(streamReader, BUFFER_SIZE);
+    while (true) {
+        //далее делаем что-то со строкой, например выводим на экран
+        String line = reader.readLine();
+        if (line == null) break;
+        System.out.println(line);
+    }
+} catch (FileNotFoundException e) {
+    // файл не найден
+    e.printStackTrace();
+} catch (UnsupportedEncodingException e) {
+    //Не верная кодировка, кодировка не найдена
+    throw new RuntimeException("Кодировка не найдена", e);
+} catch (IOException e) {
+    e.printStackTrace();
+} finally{
+    try {
+        reader.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+```
+Пример на базе потоков и библиотеки nio2
+```java
 try (BufferedReader reader = new BufferedReader(
         new InputStreamReader(
                 new FileInputStream(FILE_NAME), StandardCharsets.UTF_8))){
@@ -22,7 +72,7 @@ try (BufferedReader reader = new BufferedReader(
 } 
 ```
 
-Когда вы узнаете, что такое параметрический полиморфизм, типизированные коллекции, списки и т.п., т.н. generics, 
+Когда вы узнаете, что такое параметрический полиморфизм, типизированные коллекции, списки и т.п., т.н. generics,
 вы сможете использовать следующий код для чтения файла построчно:
 
 ```java
@@ -36,10 +86,6 @@ for(String line: lines){
 ```java
 Files.lines(Paths.get(FILE_NAME), StandardCharsets.UTF_8).forEach(System.out::println);
 ```
-
-
-
-
 
 # Тесты
 В классе [Tests](src/ru/isu/labs/files/Tests.java) находится текущий набор тестов для проверки корректности Вашей работы.
