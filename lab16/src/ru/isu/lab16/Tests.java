@@ -1,7 +1,8 @@
 package ru.isu.lab16;
 
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import java.io.File;
 import java.util.Arrays;

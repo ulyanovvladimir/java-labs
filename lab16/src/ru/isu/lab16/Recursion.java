@@ -23,12 +23,12 @@ public class Recursion {
      *
      * @param n число
      * @return факториал числа n
-     * <p>
-     * 5! = 120
      */
     public static int factorial(int n) {
-        //TODO
-        return (n == 0) ? 1 : n * factorial(n - 1);
+        if (n==0)
+            return 1;
+        else
+            return n* factorial(n-1);
     }
 
 
@@ -182,6 +182,6 @@ public class Recursion {
      * @param name часть имени файла или папки
      */
     static void findFile(String path, String name) {
-
+        //TODO
     }
 }
