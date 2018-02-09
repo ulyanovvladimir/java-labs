@@ -1,8 +1,10 @@
 package ru.isu.lab14.words;
 
+
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -24,15 +26,18 @@ public class Tests {
         assertTrue(real.contains("воробей"));
         assertTrue(real.contains("не"));
         assertEquals(3, real.size());
+
     }
 
     @Test
     public void testComparator(){
         List<String> list = Arrays.asList(new String[]{"слово", "не", "воробей","ха-ха"});
-        list.sort(lengthComparator());
+        Comparator<String> comparator = lengthComparator();
+        list.sort(comparator);
         assertTrue(list.indexOf("ха-ха")> list.indexOf("воробей"));
         assertTrue(list.indexOf("не")> list.indexOf("воробей"));
         assertTrue(list.indexOf("не")> list.indexOf("ха-ха"));
+        assertEquals("Слова одинаковой длины должны возвращать 0",0, comparator.compare("вол","дом"));
     }
 
     @Test
